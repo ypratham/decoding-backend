@@ -1,3 +1,3 @@
-const responseModifier = (success,data,message) => {
-    return ({success, data, message})
-}
+export const responseModifier = (success, data, message) => {
+  return { success, data, message };
+};
