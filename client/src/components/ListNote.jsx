@@ -38,7 +38,7 @@ const ListNote = () => {
   }, []);
 
   return (
-    <ul className="container">
+    <ul className="container flex flex-wrap gap-3">
       {notes.map((item) => (
         <NoteCard {...item} id={item._id} />
       ))}
