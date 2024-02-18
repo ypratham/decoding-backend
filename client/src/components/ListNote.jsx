@@ -2,7 +2,17 @@ import React, { useEffect, useState } from "react";
 import UpdateNoteModal from "./UpdateNoteModal";
 
 const NoteCard = ({ title, description, id }) => {
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    fetch("http://localhost:5000/notes/delete/" + id, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        window.alert(data.message);
+      });
+  };
 
   return (
     <li className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -31,7 +41,18 @@ const NoteCard = ({ title, description, id }) => {
 const ListNote = () => {
   const [notes, setNotes] = useState([]);
 
-  const fetchAllNotes = () => {};
+  const fetchAllNotes = () => {
+    fetch("http://localhost:5000/notes", {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data.message);
+        setNotes(data.data);
+      });
+  };
 
   useEffect(() => {
     fetchAllNotes();

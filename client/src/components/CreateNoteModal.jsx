@@ -16,6 +16,23 @@ const CreateNoteModal = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    fetch("http://localhost:5000/notes/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        description,
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        window.alert(data.message);
+      });
   };
 
   return (
